@@ -20,3 +20,5 @@ xmlrpc.php
 .DS_Store
 node_modules/
 .cache/
+mysqladmin
+xhprof/
