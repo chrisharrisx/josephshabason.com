@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    {{ function('wp_head') }}
+  </head>
+  <body class="{{ body_class }}">
+    <div class="modal">
+      {% if is_category %}
+        {% for post in posts %}
+          <div data-id="{{ post.id }}" class="embed">
+            {# <i class="fas fa-times"></i> #}
+            <i class="icofont-close"></i>
+            {{ post.get_field('embed', FALSE, FALSE) }}
+            <div class="content">
+              {{ post.content }}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% block header %}
+    <div class="overlay-nav">
+      <div class="mobile-nav-wrapper">
+        <nav>
+          <ul class="nav-main-left">
+              <li class="nav-main-item">
+                <a class="nav-main-link" href="/">Home</a>
+              </li>
+            {% for item in headerMenu.items %}
+              <li class="nav-main-item">
+                <a class="nav-main-link" href="{{ item.link }}">{{ item.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="wrap">
+      <header>
+        <div class="container">
+          <i class="fas fa-bars mobile mobile-toggle open"></i>
+          <i class="fas fa-times mobile mobile-toggle close"></i>
+          <h1><span>Joseph Shabason</span></h1>
+          <nav>
+            <ul class="nav-main-left">
+              {% for item in headerMenu.items %}
+                <li class="nav-main-item">
+
+
+                  <a class="nav-main-link{% if item.current %} active{% endif %}" href="{{ item.link }}">{{ item.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </header>
+      {% endblock %}
+
+      <main>
+        <div class="{{ container_class }}">
+          {% block content %}
+          {% endblock content %}
+        </div>
+      </main>
+      <footer>
+        <small>&copy; Joseph Shabason {{ "now"|date('Y') }}</small>
+        {{ function('wp_footer') }}
+      </footer>
+    </div>
+  </body>
+</html>

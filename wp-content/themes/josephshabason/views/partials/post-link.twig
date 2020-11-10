@@ -1,0 +1,10 @@
+<div class="post-link" data-target="{{ post.id }}">
+  <img src="{{ post.thumbnail.src }}" class="featured-image" alt="Image for {{ post.title }}" />
+  <div class="post-content">
+    <h2 class="title">{{ post.title }}</h2>
+
+    {% if post.artist_name is not empty %}
+      <h3 class="artist">{{ post.artist_name }}</h3>
+    {% endif %}
+  </div>
+</div>

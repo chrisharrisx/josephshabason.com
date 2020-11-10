@@ -1,0 +1,37 @@
+/* base styles and imports */
+
+@use 'modules/common/colors';
+@use 'modules/common/layout';
+@use 'modules/common/images';
+@use 'modules/common/links';
+@use 'modules/header';
+@use 'modules/main';
+@use 'modules/footer';
+@use 'modules/category';
+@use 'modules/singular';
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  background-color: colors.$black;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  color: colors.$white;
+  font-family: Europa, sans-serif;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: asap, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
