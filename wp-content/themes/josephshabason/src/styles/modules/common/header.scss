@@ -1,5 +1,5 @@
-@use 'common/colors';
-@use 'common/layout';
+@use 'colors';
+@use 'layout';
 
 $nav-item-font-size: 14px;
 
@@ -7,6 +7,11 @@ $nav-item-font-size: 14px;
   position: absolute;
   top: 8px;
   font-size: 1.5rem;
+}
+
+@mixin active {
+  border-bottom: 2px solid colors.$white;
+  color: colors.$white;
 }
 
 .overlay-nav {
@@ -76,7 +81,7 @@ header {
   padding-top: 20px;
 
   @include layout.tablet-up {
-    padding: 50px 0;
+    padding: 50px 0 60px 0;
   }
 
   .mobile-toggle {
@@ -89,6 +94,10 @@ header {
     @include toggle;
     opacity: 1;
     visibility: visible;
+
+    @include layout.tablet-up {
+      display: none;
+    }
   }
 
   .close {
@@ -103,7 +112,7 @@ header {
 
   h1 {
     margin-top: 0;
-    margin-left: 20px;
+    margin-left: 0;
     text-align: center;
     font-size: 1.2rem;
     line-height: 2;
@@ -113,8 +122,9 @@ header {
       line-height: 1.1;
     }
 
-    span {
+    a {
       margin: 0 auto;
+      text-decoration: none;
 
       @include layout.tablet-up {
         display: inline-block;
@@ -133,7 +143,7 @@ header {
     }
   }
 
-  ul {
+  .nav-main-left-desktop {
     display: flex;
     flex-direction: column;
     padding-left: 0;
@@ -155,21 +165,29 @@ header {
       }
     }
   }
+}
 
-  a {
-    font-family: asap;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-decoration: none;
+.nav-main-link {
+  font-family: asap;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: colors.$grey;
+
+  &:hover {
+    color: white;
+  }
+
+  &.active {
+    @include active;
+  }
+
+  &.active.parent {
     color: colors.$grey;
+    border-bottom: 2px solid colors.$grey;
 
     &:hover {
-      color: white;
-    }
-
-    &.active {
-      color: white;
-      border-bottom: 2px solid white;
+      @include active;
     }
   }
 }

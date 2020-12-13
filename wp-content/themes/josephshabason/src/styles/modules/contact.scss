@@ -1,0 +1,29 @@
+@use 'common/colors';
+
+.wpcf7-form {
+  max-width: 660px;
+  margin: 0 auto;
+
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  input[type=submit] {
+    width: initial;
+    padding: 15px 30px;
+    border: 2px solid white;
+    background-color: colors.$black;
+    color: white;
+    font-size: 1.2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output {
+    border-color: #dc3232 !important;
+  }
+}

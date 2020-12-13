@@ -1,8 +1,9 @@
 {# pages and single posts #}
 {% extends 'base.twig' %}
 {% set body_class = 'single' %}
-{% set container_class = 'container-narrow' %}
 
 {% block content %}
-  {% include 'partials/post.twig' %}
+  <div class="container-narrow">
+    {% include 'partials/post.twig' %}
+  </div>
 {% endblock %}

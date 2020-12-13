@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -14,6 +15,15 @@ module.exports = {
       host: 'localhost',
       port: 3000,
       proxy: 'http://josephshabason.localhost'
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "src/styles/icofont.min.css", to: "styles/icofont.min.css" },
+        { from: "src/styles/fonts", to: "styles/fonts" },
+      ],
+      options: {
+        concurrency: 100,
+      },
     }),
   ],
   output: {

@@ -4,11 +4,16 @@
 @use 'modules/common/layout';
 @use 'modules/common/images';
 @use 'modules/common/links';
-@use 'modules/header';
-@use 'modules/main';
-@use 'modules/footer';
-@use 'modules/category';
-@use 'modules/singular';
+@use 'modules/common/header';
+@use 'modules/common/footer';
+@use 'modules/common/category';
+@use 'modules/common/singular';
+@use 'modules/common/page-nav';
+@use 'modules/common/typography';
+@use 'modules/tours';
+@use 'modules/about';
+@use 'modules/contact';
+@use 'modules/news';
 
 html {
   height: 100%;
@@ -21,9 +26,6 @@ html, body {
 }
 
 body {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
   color: colors.$white;
   font-family: Europa, sans-serif;
   box-sizing: border-box;

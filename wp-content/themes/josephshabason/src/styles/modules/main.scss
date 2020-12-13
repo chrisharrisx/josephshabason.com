@@ -1,9 +1,0 @@
-@use 'common/layout';
-
-main {
-  padding-top: 64px;
-
-  @include layout.tablet-up {
-    padding-top: 0;
-  }
-}

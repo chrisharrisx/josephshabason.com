@@ -1,0 +1,17 @@
+{% extends 'base.twig' %}
+{% set body_class = 'news' %}
+{% set description = 'The latest news about Joseph Shabason and related projects' %}
+
+{% block content %}
+  <div class="container-narrow">
+    {% include 'partials/page-nav.twig' with { 'active': 'news' } %}
+
+    {% for post in posts %}
+      <div class="news-item">
+        <p class="news-date">{{ post.meta('date')|date('F j, Y') }}</p>
+        <h2 class="news-title">{{ post.title }}</h2>
+        <div class="news-content">{{ post.content }}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

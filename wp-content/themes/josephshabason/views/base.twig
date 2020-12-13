@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description }}">
+    <meta name="googlebot" content="index,follow" />
     <link rel="profile" href="https://gmpg.org/xfn/11">
     {{ function('wp_head') }}
   </head>
@@ -11,9 +13,12 @@
       {% if is_category %}
         {% for post in posts %}
           <div data-id="{{ post.id }}" class="embed">
-            {# <i class="fas fa-times"></i> #}
             <i class="icofont-close"></i>
-            {{ post.get_field('embed', FALSE, FALSE) }}
+            {% if post.get_field('embedType') %}
+              {{ post.get_field('embedBandcamp') }}
+            {% else %}
+              {{ post.get_field('embed', FALSE, FALSE) }}
+            {% endif %}
             <div class="content">
               {{ post.content }}
             </div>
@@ -41,15 +46,13 @@
     <div class="wrap">
       <header>
         <div class="container">
-          <i class="fas fa-bars mobile mobile-toggle open"></i>
-          <i class="fas fa-times mobile mobile-toggle close"></i>
-          <h1><span>Joseph Shabason</span></h1>
+          <i class="icofont-navigation-menu open mobile-toggle"></i>
+          <i class="icofont-close close mobile-toggle"></i>
+          <h1><a href="/">Joseph Shabason</a></h1>
           <nav>
-            <ul class="nav-main-left">
+            <ul class="nav-main-left-desktop">
               {% for item in headerMenu.items %}
                 <li class="nav-main-item">
-
-
                   <a class="nav-main-link{% if item.current %} active{% endif %}" href="{{ item.link }}">{{ item.title }}</a>
                 </li>
               {% endfor %}

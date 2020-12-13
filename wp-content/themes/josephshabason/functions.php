@@ -39,7 +39,7 @@ add_action('after_setup_theme', 'theme_support');
 function register_styles() {
   /* ASAP, headings / EUROPA, body font */
   wp_enqueue_style('typekit', 'https://use.typekit.net/ufa7toe.css', null, null, 'screen');
-  wp_enqueue_style('icofont', '/dist/icofont/icofont.css', null, null, 'screen');
+  wp_enqueue_style('font-awesome', '/dist/styles/all.min.css', null, null, 'screen');
   
   /* Enqueue stylesheet with content hash, so that updates to styles will bust browser cache */
   $CSSfiles = new DirectoryIterator(get_stylesheet_directory() . '/dist/styles');

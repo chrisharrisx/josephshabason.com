@@ -1,0 +1,27 @@
+@use 'colors';
+@use 'header';
+
+.page-nav {
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    margin-right: 20px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  &.news {
+    a[href*=news] {
+      @include header.active;
+    }
+  }
+
+  &.tours {
+    a[href*=tours] {
+      @include header.active;
+    }
+  }
+}

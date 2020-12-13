@@ -43,14 +43,19 @@
       })
       window.scroll(0, currentScrollPosition);
     })
+
+    if (['news', 'tours'].includes(document.body.className)) {
+      $('.nav-main-left-desktop').find('.nav-main-link[href*=tours]').addClass('active parent');
+    }
   })
 
   var previousWidth = $(window).width();
-  var breakpoint = 800;
+  var breakpoint = 802;
 
   $(window).on('resize', function() {
     if ($(window).width() >= breakpoint && previousWidth < breakpoint) {
       $('html').removeClass('menu-active');
     }
+    previousWidth = $(window).width();
   })
 })(jQuery);
