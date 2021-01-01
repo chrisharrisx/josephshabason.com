@@ -11,7 +11,6 @@
 @use 'modules/common/page-nav';
 @use 'modules/common/typography';
 @use 'modules/tours';
-@use 'modules/about';
 @use 'modules/contact';
 @use 'modules/news';
 
@@ -22,18 +21,8 @@ html {
 
 html, body {
   background-color: colors.$black;
-  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  color: colors.$white;
-  font-family: Europa, sans-serif;
   box-sizing: border-box;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: asap, sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }

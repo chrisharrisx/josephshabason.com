@@ -1,4 +1,5 @@
 @use 'common/colors';
+@use 'common/typography';
 
 .wpcf7-form {
   max-width: 660px;
@@ -16,6 +17,7 @@
     border: 2px solid white;
     background-color: colors.$black;
     color: white;
+    font-family: typography.$body-font;
     font-size: 1.2rem;
 
     &:hover {
