@@ -15,7 +15,7 @@
           <div data-id="{{ post.id }}" class="embed">
             <i class="icofont-close"></i>
             {% if post.get_field('embedType') %}
-              {{ post.get_field('embedBandcamp') }}
+              {{ post.get_field('embedBandcamp', FALSE, FALSE) }}
             {% else %}
               {{ post.get_field('embed', FALSE, FALSE) }}
             {% endif %}

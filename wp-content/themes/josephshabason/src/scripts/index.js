@@ -11,12 +11,6 @@
       
       $target = $(`div[data-id="${$(this).attr('data-target')}"]`);
 
-      $iframe = $target.find('iframe').first();
-      var frameWidth = $iframe.width();
-
-      $content = $target.find('.content').first();
-      $content.width(frameWidth);
-
       $target.show();
       $('.modal').css('display', 'flex');
       
@@ -29,11 +23,6 @@
     });
 
     $('.modal').not('iframe').on('click', function() {
-      $('.embed:visible').each(function() {
-        var $embed = $(this).find('iframe');
-        $embed.attr('src', $embed.attr('src')); // reload the iframe to stop it from playing 🤡
-      })
-
       $('.embed').hide();
       $('.modal').hide();
 
