@@ -8,4 +8,10 @@
   .news-title {
     margin: 0;
   }
+
+  .news-content {
+    figure, .wp-block-embed {
+      margin: 0;
+    }
+  }
 }
