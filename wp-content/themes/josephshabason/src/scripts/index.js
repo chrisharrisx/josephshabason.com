@@ -23,6 +23,11 @@
     });
 
     $('.modal').not('iframe').on('click', function() {
+      $('.embed:visible').each(function() {
+        var $embed = $(this).find('iframe');
+        $embed.attr('src', $embed.attr('src')); // reload the iframe to stop it from playing 🤡
+      })
+      
       $('.embed').hide();
       $('.modal').hide();
 
