@@ -8,15 +8,15 @@ if (is_category()) {
   if ($category->category_nicename == 'film-tv') {
     $context['films'] = Timber::get_posts(array(
       'post_status' => 'publish',
-      'category__in' => 10,
+      'category__in' => 7,
     ));
     $context['tv'] = Timber::get_posts(array(
       'post_status' => 'publish',
-      'category__in' => 12,
+      'category__in' => 8,
     ));
     $context['ads'] = Timber::get_posts(array(
       'post_status' => 'publish',
-      'category__in' => 13,
+      'category__in' => 9,
     ));
     $template = 'category-film-tv-ads.twig';
   }
