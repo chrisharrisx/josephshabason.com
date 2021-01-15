@@ -1,7 +1,7 @@
 @use 'common/colors';
 
-.tour {
-  .tour-year {
+.shows {
+  .show-year {
     margin-bottom: 50px;
     border-bottom: 1px solid colors.$dark-grey;
   }
@@ -11,6 +11,10 @@
     grid-template-columns: 200px 1fr;
     grid-gap: 20px;
     margin-bottom: 40px;
+
+    .location {
+      font-style: italic;
+    }
 
     p {
       margin-top: 0;

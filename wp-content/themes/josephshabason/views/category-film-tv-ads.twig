@@ -1,0 +1,31 @@
+{% extends 'base.twig' %}
+{% set body_class = 'category' %}
+{% set container_class = 'container grid' %}
+{% set description = 'A selection of works from Joseph Shabason, as composer, performer and collaborator' %}
+
+{% block content %}
+
+  {% include 'partials/category-nav.twig' %}
+
+  {% if films|length %}
+    <h2 id="films" class="grid-section-label">Films</h2>    
+    {% for post in films %}
+      {% include 'partials/post-link.twig' %}
+    {% endfor %}
+  {% endif %}
+
+  {% if tv|length %}
+    <h2 id="tv" class="grid-section-label">TV</h2>    
+    {% for post in tv %}
+      {% include 'partials/post-link.twig' %}
+    {% endfor %}
+  {% endif %}
+
+  {% if ads|length %}
+    <h2 id="ads" class="grid-section-label">Ads</h2>    
+    {% for post in ads %}
+      {% include 'partials/post-link.twig' %}
+    {% endfor %}
+  {% endif %}
+
+{% endblock %}

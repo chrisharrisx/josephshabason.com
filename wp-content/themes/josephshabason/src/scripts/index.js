@@ -25,7 +25,8 @@
     $('.modal').not('iframe').on('click', function() {
       $('.embed:visible').each(function() {
         var $embed = $(this).find('iframe');
-        $embed.attr('src', $embed.attr('src')); // reload the iframe to stop it from playing 🤡
+        $embed.attr('src', $embed.attr('src')); 
+        // when modal is dismissed, reload the iframe to stop it from playing 🤡
       })
       
       $('.embed').hide();
@@ -38,9 +39,18 @@
       window.scroll(0, currentScrollPosition);
     })
 
-    if (['news', 'tours'].includes(document.body.className)) {
-      $('.nav-main-left-desktop').find('.nav-main-link[href*=tours]').addClass('active parent');
+    if (document.body.classList.contains('news') || document.body.classList.contains('shows')) {
+      $('.nav-main-left-desktop').find('.nav-main-link[href*=news]').addClass('active parent');
     }
+
+    $('.category-nav a').on('click', function() {
+      event.preventDefault();
+      $target = $('#' + $(this).data('target'));
+
+      jQuery('html, body').animate({
+        scrollTop: ($target.offset().top - 300)
+      }, 500);
+    });
   })
 
   var previousWidth = $(window).width();

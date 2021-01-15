@@ -19,9 +19,13 @@
     }
   }
 
-  &.tours {
-    a[href*=tours] {
+  &.shows {
+    a[href*=shows] {
       @include header.active;
     }
   }
+}
+
+.category-nav {
+  grid-column: span 2;
 }

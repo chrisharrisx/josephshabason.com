@@ -1,0 +1,49 @@
+{% extends 'base.twig' %}
+{% set body_class = 'shows' %}
+{% set description = 'Upcoming and past show dates and locations' %}
+
+{% block content %}
+  <div class="container-narrow content">
+    {% include 'partials/page-nav.twig' with { 'active': 'shows' } %}
+
+    {% set years = [] %}
+
+    {% if posts is empty %}
+      <h2>No shows found! Please check back soon for upcoming dates.</h2>
+    {% else %}
+      <div class="shows">
+        {% for show in posts %}
+
+            {% if show.show_date|date('Y') not in years %}
+              <h2 class="show-year">{{ show.show_date|date('Y') }}</h2>
+              {% set years = years|merge([show.show_date|date('Y')]) %}
+            {% endif %}
+                
+            <div class="show">
+              <div class="show-time">
+                <p class="mb-0">{{ show.show_date|date('F j, Y') }}</p>
+                <p>{{ show.show_time|date('g:i a') }}</p>
+              </div>
+              <div class="show-details">
+                <p class="mb-0 location">{{ show.venue_name }}</p>
+                
+                {% if show.venue_address is not empty %}
+                  <p>{{ show.venue_address }}</p>
+                {% endif %}
+
+                {% if show.description is not empty %}
+                  <p>{{ show.description }}</p>
+                {% endif %}
+
+                {% if show.info_link is not empty %}
+                  {% set linktext = show.info_link_label ? show.info_link_label : show.info_link %}
+                  <p><a href="{{ show.info_link }}">{{ linktext }}</a></p>
+                {% endif %}
+              </div>
+            </div>
+          
+        {% endfor %}
+      </div>
+    {% endif %}
+  
+{% endblock %}
