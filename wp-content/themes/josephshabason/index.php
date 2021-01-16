@@ -2,40 +2,11 @@
 
 $context = Timber::get_context();
 
-if (is_category()) {
-  $category = get_queried_object();
-
-  if ($category->category_nicename == 'film-tv') {
-    $context['films'] = Timber::get_posts(array(
-      'post_status' => 'publish',
-      'category__in' => 7,
-    ));
-    $context['tv'] = Timber::get_posts(array(
-      'post_status' => 'publish',
-      'category__in' => 8,
-    ));
-    $context['ads'] = Timber::get_posts(array(
-      'post_status' => 'publish',
-      'category__in' => 9,
-    ));
-    $template = 'category-film-tv-ads.twig';
-  }
-  else {
-    $context['posts'] = Timber::get_posts(array(
-      'post_status' => 'publish',
-      'category__in' => $category->term_id
-    ));
-    $template = 'category.twig';
-  }
-  
-  $context['is_category'] = true;
-}
-else if (is_post_type_archive(array('news'))) {
+if (is_post_type_archive(array('news'))) {
   $context['posts'] = Timber::get_posts();
   $template = 'news.twig';
 }
 else if (is_post_type_archive(array('shows'))) {
-  // $context['posts'] = Timber::get_posts();
   $context['posts'] = Timber::get_posts(array(
     'post_type' => 'shows',
     'post_status' => 'publish',
@@ -46,16 +17,39 @@ else if (is_post_type_archive(array('shows'))) {
 }
 else {
   $context['post'] = new Timber\Post();
-  $context['is_category'] = false;
 
   if (is_front_page()) {
     $template = 'front.twig';
+    $context['is_category'] = false;
   }
   else if (is_singular()) {
-    $template = array(
-      $context['post']->slug . '.twig', 
-      'singular.twig'
-    );
+    $categories = get_field('category_posts');
+    $category_posts = array();
+
+    if (!empty($categories)) {
+      foreach($categories as $category) {
+        $posts = Timber::get_posts(array(
+          'post_status' => 'publish',
+          'category__in' => $category['category']
+        ));
+        array_push($category_posts, array(
+          'title' => $category['title'],
+          'slug' => preg_replace('/[^a-zA-Z]/', '-', $category['title']), 
+          'posts' => $posts
+        ));
+      }
+
+      $context['categories'] = $category_posts;
+      $context['is_category'] = true;
+      $template = 'category.twig';
+    }
+    else {
+      $template = array(
+        $context['post']->slug . '.twig', 
+        'singular.twig'
+      );
+      $context['is_category'] = false;
+    }
   }
   else {
     $template = 'index.twig';

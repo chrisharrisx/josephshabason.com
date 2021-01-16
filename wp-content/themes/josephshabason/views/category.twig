@@ -1,10 +1,28 @@
+
 {% extends 'base.twig' %}
 {% set body_class = 'category' %}
 {% set container_class = 'container grid' %}
 {% set description = 'A selection of works from Joseph Shabason, as composer, performer and collaborator' %}
 
 {% block content %}
-  {% for post in posts %}
-    {% include 'partials/post-link.twig' %}
-  {% endfor %}
+
+  {% if categories|length %}
+    {% if categories|length > 1 %}
+      <nav class="content page-nav category-nav">
+        {% for category in categories %}
+          {% set slug = category.slug|lower %}
+          <a href="#{{ slug }}" class="nav-main-link" data-target="{{ slug }}">{{ category.title }}</a>
+        {% endfor %}
+      </nav>
+    {% endif %}
+    
+    {% for category in categories %}
+      {% set slug = category.slug|lower %}
+      <h2 id="{{ slug }}" class="grid-section-label">{{ category.title }}</h2>
+      {% for post in category.posts %}
+        {% include 'partials/post-link.twig' %}
+      {% endfor %}
+    {% endfor %} 
+  {% endif %}
+
 {% endblock %}
